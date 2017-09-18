@@ -1,0 +1,24 @@
+<div class="info-box bg-blue" id="475425" ng-controller="PopoverDemoCtrl">
+<!--  <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+  <div class="info-box-content">-->
+    <span class="info-box-number">CREATEDAT: {{currentMedia.CREATEDAT | date: 'dd/mm/yyyy'}}</span>
+    <span class="info-box-number">VERSION: {{currentMedia.VERSION}}</span>
+	<span class="info-box-number">LANGUAGE:{{currentMedia.LG}}</span>
+    <span class="info-box-number">ASPECT: {{currentMedia.ASPECT}}</span>
+	<span class="info-box-number">TYPE: {{currentMedia.TYPE}}</span>
+
+<!--		<span class="info-box-number"></span>
+     The progress section is optional 
+    <div class="progress">
+      <div class="progress-bar" style="width: 70%"></div>
+    </div>-->
+	
+	<span class="progress-description" ng-repeat="currentFileId in currentFilesList">
+		<table cellspacing="10"><tr>
+            <td colspan="3"><span fm-file-status="{{currentFiles[currentFileId].FMFILESTATUSID}}" >{{currentFiles[currentFileId].FMFILESTATUSID}}</span> </td><td><font size="-1">{{currentFiles[currentFileId].FILENAME}}</font></td><td>({{currentFiles[currentFileId].FMLOCATION}})</td>
+		</tr></table>
+
+    </span>
+	
+	
+</div>

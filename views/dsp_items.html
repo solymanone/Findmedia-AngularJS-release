@@ -1,0 +1,72 @@
+<div id="1" ng-controller="TitleSectionController">{{titleTxt}}</div>
+
+
+
+<div class="box-body table-responsive no-padding">
+    <table class="table table-bordered table-hover dataTable" role="grid">
+        <tbody>
+            <thead>
+                
+                <tr role="row"><th class="sorting" >INUMBER</th><th class="sorting">Created at</th><th class="sorting">Type</th><th class="sorting">Language</th></tr>
+                <tr role="row" ng-repeat="ref in items.FMREFERENCES | toArray | orderBy: '-CREATEDAT' ">oooo
+                    <td><a ng-href="#/ref/{{ref.ID}}" popover-template="views/dsp_popup.html" popover-title="{{media.REFNAME}}" class="btn btn-default" popover-trigger="focus" popover-placement="{{$first? 'bottom' : 'left'}}">{{ref.INUMBER}}</a></td>
+                    <td>{{ref.CREATEDAT | date: 'dd-MM-yyyy'}}</td>
+                    <td>{{ref.TYPE}}</td>
+                    <td>
+                        <span ng-repeat="media in items.MEDIAS" ng-if="ref.ID === media.FMREFERENCEID">
+                            <!--<button popover="gfdgfd  dfg d{{media.ID}}" popover-template="dynamicPopover.templateUrl" file-Status-Color='{{media.ID}}' id='{{media.ID}}' popover-title="Title" class="btn btn-default"><b>{{media.LG + media.SUBTITLE|upper}}</b></button>-->
+                            <button ng-controller="PopoverDemoCtrl" ng-click="setCurrentMediaId(media.ID)" popover-template="dynamicPopover.templateUrl" file-Status-Color='{{media.ID}}' id='{{media.ID}}' popover-title="{{media.REFNAME}}" class="btn btn-default" popover-trigger="focus" popover-placement="{{$first? 'bottom' : 'left'}}"><b>{{media.LG + media.SUBTITLE|upper}} {{media.LGVERSION}}</b></button>
+                            <!--<a href="#/media/{{media.ID}}" file-Status-Color='{{media.ID}}' id='{{media.ID}}'><b>{{media.LG + media.SUBTITLE|upper}}</b></a> | -->
+                        
+                        </span> 
+                    </td>
+                </tr>
+                
+            </thead>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="dataTables_paginate paging_simple_numbers" id="example1_paginate" ng-controller="DspPaginationController">
+	<ul class="pagination">
+		<li class="paginate_button previous disabled" id="example1_previous">
+		  <a href="index.cfm?p=#pre#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a></li>
+	        <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li>
+		    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li>
+		    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li>
+		    <li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">6</a></li> 
+                <li class="paginate_button next" id="example1_next">
+			<a href="index.cfm?p=1" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a></li>
+	
+	</ul>
+</div>
+
+<!--<div ng-controller="PopoverDemoCtrl">
+    <h4>Dynamic</h4>
+    <div class="form-group">
+      <label>Popup Text:</label>
+      <input type="text" ng-model="dynamicPopover.content" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Popup Title:</label>
+      <input type="text" ng-model="dynamicPopover.title" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Popup Template:</label>
+      <input type="text" ng-model="dynamicPopover.templateUrl" class="form-control">
+    </div>
+    <button popover="{{dynamicPopover.content}}" popover-title="{{dynamicPopover.title}}" class="btn btn-default">Dynamic Popover</button>
+
+    <button popover-template="dynamicPopover.templateUrl" popover-title="{{dynamicPopover.title}}" class="btn btn-default">Popover With Template</button>
+
+    <script type="text/ng-template" id="myPopoverTemplate.html">
+        <div>{{dynamicPopover.content}}</div>
+        <div class="form-group">
+          <label>Popup Title:</label>
+          <input type="text" ng-model="dynamicPopover.title" class="form-control">
+        </div>
+    </script>
+    <hr />
+
+</div>-->
